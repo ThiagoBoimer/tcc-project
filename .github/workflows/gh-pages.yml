@@ -22,5 +22,5 @@ jobs:
           credentials: ${{ secrets.CREDENTIALS }} # Google service account credentials base64 encoded -> base64 secrets.json -w0 (bash)
           filename: "main.pdf"
           folderId: ${{ secrets.FOLDER_ID }} # https://drive.google.com/drive/u/0/folders/FOLDER_ID
-          name: f"TCC_Thiago_v0.pdf" # Update every new version
+          name: "TCC_Thiago_v0.pdf" # Update every new version
           overwrite: "false" # False in case I forget something
