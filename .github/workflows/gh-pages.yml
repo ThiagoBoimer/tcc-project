@@ -14,8 +14,8 @@ jobs:
       - name: Upload to gdrive
         uses: adityak74/google-drive-upload-git-action@main
         with:
-          credentials: ${{ secrets.credentials }}
+          credentials: ${{ secrets.CREDENTIALS }}
           filename: "main.pdf"
-          folderId: ${{ secrets.folderId }}
+          folderId: ${{ secrets.FOLDER_ID }}
           name: "teste.pdf" # optional string
           overwrite: "true" # optional boolean
