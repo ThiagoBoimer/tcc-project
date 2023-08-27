@@ -24,7 +24,7 @@ jobs:
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.CREDENTIALS }} # Google service account credentials base64 encoded -> base64 secrets.json -w0 (bash)
-          filename: "main.pdf"
+          filename: "tcc-doc/main.pdf"
           folderId: ${{ secrets.FOLDER_ID }} # https://drive.google.com/drive/u/0/folders/FOLDER_ID
           name: "TCC_Thiago_v${{ steps.date.outputs.date }}.pdf" # Update every new version
           overwrite: "false" # False in case I forget something
