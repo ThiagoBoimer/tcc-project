@@ -16,11 +16,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d')"
+
       - name: Upload to gdrive
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.CREDENTIALS }} # Google service account credentials base64 encoded -> base64 secrets.json -w0 (bash)
           filename: "main.pdf"
           folderId: ${{ secrets.FOLDER_ID }} # https://drive.google.com/drive/u/0/folders/FOLDER_ID
-          name: "TCC_Thiago_v0.pdf" # Update every new version
+          name: "TCC_Thiago_v${{ steps.date.outputs.date }}.pdf" # Update every new version
           overwrite: "false" # False in case I forget something
