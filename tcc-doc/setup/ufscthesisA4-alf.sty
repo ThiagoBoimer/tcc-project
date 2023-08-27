@@ -178,6 +178,9 @@ nopostdot  % Não é colocado ponto ao final da entrada
 \providecommand{\imprimircentro}{}
 \newcommand{\centro}[1]{\renewcommand{\imprimircentro}{#1}}
 
+\providecommand{\imprimirdepartamento}{}
+\newcommand{\departamento}[1]{\renewcommand{\imprimirdepartamento}{#1}}
+
 \newcommand{\coordenadorname}{Coordenador}
 \providecommand{\imprimircoordenadorRotulo}{}
 \providecommand{\imprimircoordenador}{}
@@ -301,6 +304,7 @@ nopostdot  % Não é colocado ponto ao final da entrada
 		%\large
 		\MakeTextUppercase{\imprimirinstituicao}\par%
 		\MakeTextUppercase{\imprimircentro}\par%
+		\MakeTextUppercase{\imprimirdepartamento}\par%
 		\MakeTextUppercase{\imprimirprograma}\par%
 		%\vfill
 		\vspace*{5\baselineskip}
