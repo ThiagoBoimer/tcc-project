@@ -2,27 +2,23 @@
 \chapter{Introdução}
 % ----------------------------------------------------------
 
-As orientações aqui apresentadas são baseadas em um conjunto de normas elaboradas pela \gls{ABNT}. Além das normas técnicas, a Biblioteca também elaborou uma série de tutoriais, guias, \textit{templates} os quais estão disponíveis em seu site, no endereço \url{http://portal.bu.ufsc.br/normalizacao/}.
+A discussão acerca do gerenciamento de resíduos sólidos adquiriu potência em meados de 1970, acompanhando os tópicos das conferências como na de Estocolmo (1972), Tbilisi (1977) e ECO 92 (1992). De 1993 a 2013 a produção científica no mundo relacionada ao tópico triplicou e seguiu duplicando nos anos de 2003 a 2013 \cite{deus_residuos_2015}. Após 30 anos, podemos ver nas bases de dados de produções científicas que essa tendência continua.
 
-Paralelamente ao uso deste \textit{template} recomenda-se que seja utilizado o \textbf{Tutorial de Trabalhos Acadêmicos} (disponível neste link \url{https://repositorio.ufsc.br/handle/123456789/180829}) e/ou que o discente \textbf{participe das capacitações oferecidas da Biblioteca Universitária da UFSC}.
+Ainda que amplo seja o estudo e debate acerca das questões ambientais, observa-se que na visão popular os resíduos ainda são associados a uma imagem negativa — restos, sujeira, incômodo —, o que pode dificultar a criação de estratégias pelo governo para uma destinação sustentável desses resíduos \cite{santiago_gestao_2016}.
 
-Este \textit{template} está configurado apenas para a impressão utilizando o anverso das folhas, caso você queira imprimir usando a frente e o verso, acrescente a opção \textit{openright} e mude de \textit{oneside} para \textit{twoside} nas configurações da classe \textit{abntex2} no início do arquivo principal \textit{main.tex} \cite{abntex2classe}.
+No Brasil, seguindo as legislações europeias 1999/31/CE \cite{noauthor_directiva_1999} e 2008/98/EC \cite{noauthor_directive_2018}, foi publicada a \gls{PNRS} que conforme descrito no Art 1º:
 
-Os trabalhos de conclusão de curso (TCC) de graduação e de especialização não são entregues em formato impresso na Biblioteca Universitária. Porém, sua versão PDF pode ser disponibilizada no Repositório Institucional, consulte seu curso sobre os procedimentos adotados para a entrega. 
+\begin{citacao}
+	Esta lei institui a Política Nacional de Resíduos Sólidos, dispondo sobre seus princípios, objetivos e instrumentos, bem como sobre as diretrizes relativas à gestão integrada e ao gerenciamento de resíduos sólidos, incluídos os perigosos, às responsabilidades dos geradores e do poder público e aos instrumentos econômicos aplicáveis. \cite[Art. 1º]{brasil_lei_nodate}.
+\end{citacao}
 
-\nocite{NBR6023:2002}
-\nocite{NBR6027:2012}
-\nocite{NBR6028:2003}
-\nocite{NBR10520:2002}
+Em 2022, o DECRETO Nº 10.936 \cite{brasil_decreto_2022} avançou nas definições de responsabilidades compartilhadas dos envolvidos no ciclo de vida do produto — fabricantes, importadores, distribuidores, comerciantes, consumidores e os titulares dos serviços públicos de limpeza urbana e de manejo de resíduos sólidos — mencionando marjoritariamente \gls{RSU}.
 
-% ----------------------------------------------------------
-\section{Recomendações de uso}
-% ----------------------------------------------------------
+No que tange aos \gls{RSI}, observa-se que apesar da existência de bases de dados descentralizadas pertinentes à geração dos resíduos, ainda carece de um fluxo claro, objetivo e unificado para lidar com a problemática.
 
-Este \emph{template} foi elaborado para se compilado em \LaTeX utilizando \abnTeX.  Todas as configurações de diferenciação gráfica nas divisões de seção e subseção seguem a  norma NBR 6027/2012 automaticamente. 
+Com isso, entende-se a importância do desenvolvimento de alternativas para a questão do direcionamento dos \gls{RSI}s, e na tentativa de preencher uma lacuna na cadeia produtiva baseada no descarte inconsciente e irresponsável, este trabalho propõe uma aplicação que reuna dados disponíveis sobre \gls{RSI}s a fim de conectar geradores de resíduos e potenciais consumidores de resíduos no âmbito industrial. Isso segue as diretrizes do \gls{PNRS} sobre logística reversa e economia circular. 
 
-Uma nota de rodapé, já tem seu estilo automático com o comando \texttt{$\backslash$footnote}\footnote{As notas de rodapé possuem fonte tamanho 10. O alinhamento das linhas da nota de rodapé deve ser abaixo da primeira letra da primeira palavra da nota de modo dar destaque ao expoente.}.
-
+Como \gls{SC} tem sido destaque na destinação de resíduos sólidos \cite{crea_sc_destino_2013}, considerou-se válido o foco do trabalho para o estado. Contou-se com a ajuda do \gls{IMA/SC} para obtenção dos dados de \gls{MTR} em \gls{SC} para o desenvolvimento do projeto.
 
 % ----------------------------------------------------------
 \section{Objetivos}
@@ -34,10 +30,29 @@ Nas seções abaixo estão descritos o objetivo geral e os objetivos específico
 \subsection{Objetivo Geral}
 % ----------------------------------------------------------
 
-Descrição...
+A proposta deste trabalho está vinculada aos \gls{ODS} da \gls{ONU}, em particular com o \gls{ODS} 9 — Indústria Inovação e Infraestrutura. Entrando no escopo deste projeto os ítens 9.4, 9.5 e 9.c \cite{noauthor_sustainable_nodate}, que dizem a respeito a:
+
+\begin{citacao}
+	9.4 Até 2030, modernizar a infraestrutura e reabilitar as indústrias para torná-las sustentáveis, com eficiência aumentada no uso de recursos e maior adoção de tecnologias e processos industriais limpos e ambientalmente corretos; com todos os países atuando de acordo com suas respectivas capacidades.
+\end{citacao}
+
+\begin{citacao}
+	9.5 Fortalecer a pesquisa científica, melhorar as capacidades tecnológicas de setores industriais em todos os países, particularmente os países em desenvolvimento, inclusive, até 2030, incentivando a inovação e aumentando substancialmente o número de trabalhadores de pesquisa e desenvolvimento por milhão de pessoas e os gastos público e privado em pesquisa e desenvolvimento
+\end{citacao}
+
+\begin{citacao}
+	9.c Aumentar significativamente o acesso às tecnologias de informação e comunicação e se empenhar para oferecer acesso universal e a preços acessíveis à internet nos países menos desenvolvidos, até 2020
+\end{citacao}
 
 % ----------------------------------------------------------
 \subsection{Objetivos Específicos}
 % ----------------------------------------------------------
 
-Descrição...
+Particularmente, neste trabalho pretende-se alcançar os seguintes objetivos:
+\begin{enumerate}
+    \item Levantar a viabilidade e/ou potencial de um produto de software destinado ao redirecionamento de \gls{RSI}s em \gls{SC};
+	\item Coletar, analisar e tratar os dados de geração de resíduos sólidos de relatórios de \gls{MTR} providos pelo \gls{IMA/SC};
+	\item Propor conceitos de um sistema que conecte potenciais consumidores de \gls{RSI} aos respectivos geradores em \gls{SC};
+	\item Desenvolver um protótipo de aplicativo web com mínimas funcionalidades utilizando tecnologias de código aberto;
+	\item Promover uma reflexão sobre o direcionamento de resíduos sólidos no estado e a reinserção dos mesmos na cadeia produtiva.
+\end{enumerate}
