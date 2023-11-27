@@ -2,17 +2,50 @@
 \chapter{METODOLOGIA}
 % ----------------------------------------------------------
 
-Este \textit{template} contém algumas seções criadas na tentativa de facilitar seu uso. No entanto, não há um limite máximo ou mínimo de seção a ser utilizado no trabalho. Cabe a cada autor definir a quantidade que melhor atenda à sua 
-necessidade.  
-
 % ----------------------------------------------------------
-\section{Fonte de dados}
+\section{Fontes de dados}
 % ----------------------------------------------------------
 
+Para este trabalho foram utilizados marjoritariamente dados acessíveis publicamente, com exceção aos dados de \gls{MTR}, que foi necessário solicitar ao \gls{IMA/SC}
+
+\subsection{MTR}
+
+Decidiu-se utilizar a base de MTR, pois se trata do banco mais completo em termos de informações, além de que se entende que a mesma será o futuro do rastreamento de resíduos sólidos no país.
+
+Os dados de geração de resíduos sólidos em \gls{SC} de 2020 a 2021 foram extraídos de relatórios em \gls{PDF} fornecidos pelo \gls{IMA/SC}. Infelizmente os dados foram gerados de maneira agrupada, isto é, no total dos dois anos.
+
+\subsection{IBGE}
+
+Com o objetivo de obter os dados relativos a nome de município e coordenadas geográficas foram utilizados os dados abertos mais recentes (2023) de munícipios e de malhas geográficas do \gls{IBGE}. Ambos disponíveis na \href{https://servicodados.ibge.gov.br/api/docs/}{\textbf{\gls{API} de serviço de dados}} do instituto.
+
+\subsection{Portal de Dados Abertos}
+
+Para extrair informações relativas a endereço, situação cadastral, \gls{CNAE} e telefone das empresas foram utilizados os dados mais recentes (2022) de \gls{CNPJ} disponíveis no \href{https://dados.gov.br/dados/conjuntos-dados/cadastro-nacional-da-pessoa-juridica---cnpj}{\textbf{Portal de Dados Abertos do Governo Federal.}}
+
 % ----------------------------------------------------------
-\section{Coleta, processamento e análise de dados}
+\section{Extração, processamento, armazenamento e análise de dados}
 % ----------------------------------------------------------
+
+A extração dos dados dos relatórios de \gls{MTR} gerados pelo \gls{IMA/SC} foi feita utilizando a linguagem de programação \href{https://www.python.org/}{\textbf{Python}}. Foram 13 relatórios contendo no total 294 páginas. Os dados foram extraídos utilizando as bibliotecas \href{https://tabula.technology/}{\textbf{tabula}} e \href{https://pymupdf.readthedocs.io/en/latest/}{\textbf{Fitz-PyMuPDF}}.
+
+Os dados de municípios e coordenadas geográficas foram extraídos através de requisições \gls{HTTP} direcionadas aos \gls{URI} das \gls{API}s disponibilizadas pelo \href{https://servicodados.ibge.gov.br/api/docs/}{\textbf{\gls{API} de serviço de dados}} do \gls{IBGE} utilizando a biblioteca \href{https://pypi.org/project/requests/}{\textbf{requests}}.
+
+Já a extração dos dados de \gls{CNPJ}, devido a oferta desses dados serem escondidos atrás de \gls{CAPTCHA} ou segregados em arquivos \gls{CSV}, torna-se bastante onerosa a consulta e carregamento dos dados, por isso foi utilizada a \gls{API} \href{https://docs.minhareceita.org/}{\textbf{MinhaReceita}}, que realizou a união de todos os arquivos e disponibilizou de maneira acessível e gratuita através de requisições \gls{HTTP}; possibilitou-se então, utilizar a biblioteca \href{https://pypi.org/project/requests/}{\textbf{requests}} para requisitar ao \gls{URI}.
+
+Todo processamento dos dados foi feito em máquina pessoal com Processador Intel I7 (8 núcleos), 16GB de \gls{RAM} e disco \gls{SSD}; não foi necessária a utilização de \textit{frameworks} de processamento de dados.
+
+O armazenamento foi feito em máquina virtual disponível em núvem (\textit{Cloud Computing}) utilizando o banco de dados estruturado \href{https://www.postgresql.org/}{\textbf{PostgreSQL}}.
+
+A limpeza e análise dos dados foi feita utilizando a biblioteca \href{https://pandas.pydata.org/}{\textbf{Pandas}} e \gls{SQL}.
 
 % ----------------------------------------------------------
 \section{Desenvolvimento web}
 % ----------------------------------------------------------
+
+O desenvolvimento do aplicativo web foi feito utilizando \href{https://www.python.org/}{\textbf{Python}} com o \textit{framework} \href{https://www.djangoproject.com/}{Django} para a lógica de servidor (“\textit{back-end}”) e \gls{HTML}, \gls{CSS} junto à biblioteca \href{https://htmx.org/}{\textbf{HTMX}} para a interface gráfica (“\textit{front-end}”).
+
+A plataforma foi hospedada em servidor na núvem numa máquina de 4GB de \gls{RAM}, 80 GB de \gls{SSD} e processador Intel com 2 núcleos virtuais. A provedora escolhida foi a \href{https://www.digitalocean.com/}{\textbf{DigitalOcean}}, motivando-se pelo custo fixo e crédito estudantil de 200 dólares via \href{https://education.github.com/pack}{\textbf{GitHub Pro (benefício cedido a estudantes da UFSC)}}, suficiente para manter a máquina ligada por cerca de 6 meses.
+
+Também foram utilizadas as melhores práticas de versionamento de código com \href{https://git-scm.com/}{\textbf{Git}}, containerização com \href{https://www.docker.com/}{\textbf{Docker}}, balanceamento de carga e proxy com \href{https://www.nginx.com/}{\textbf{NGINX}} e certificação \gls{SSL}. Todas tecnologias gratuitas.
+
+A previsão é que o website esteja online até Abril de 2024 no domínio \url{https://residuose.tech/}.
