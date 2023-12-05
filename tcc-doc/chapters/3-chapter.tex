@@ -3,7 +3,7 @@
 % ----------------------------------------------------------
 
 % ----------------------------------------------------------
-\section{Fontes de dados}
+\section{Fontes de dados}\label{section:Fontes}
 % ----------------------------------------------------------
 
 Para este trabalho foram utilizados marjoritariamente dados acessíveis publicamente, com exceção aos dados de \gls{MTR}, que foi necessário solicitar ao \gls{IMA/SC}
@@ -26,11 +26,11 @@ Para extrair informações relativas a endereço, situação cadastral, \gls{CNA
 \section{Extração, processamento, armazenamento e análise de dados}
 % ----------------------------------------------------------
 
-A extração dos dados dos relatórios de \gls{MTR} gerados pelo \gls{IMA/SC} foi feita utilizando a linguagem de programação \href{https://www.python.org/}{\textbf{Python}}. Foram 13 relatórios contendo no total 294 páginas. Os dados foram extraídos utilizando as bibliotecas \href{https://tabula.technology/}{\textbf{tabula}} e \href{https://pymupdf.readthedocs.io/en/latest/}{\textbf{Fitz-PyMuPDF}}.
+A extração dos dados dos relatórios de \gls{MTR} gerados pelo \gls{IMA/SC} foi feita utilizando a linguagem de programação \href{https://www.python.org/}{\textbf{Python}}. Foram 13 relatórios contendo no total 294 páginas, das quais os dados foram extraídos utilizando as bibliotecas \href{https://tabula.technology/}{\textbf{tabula}} e \href{https://pymupdf.readthedocs.io/en/latest/}{\textbf{Fitz-PyMuPDF}}.
 
 Os dados de municípios e coordenadas geográficas foram extraídos através de requisições \gls{HTTP} direcionadas aos \gls{URI} das \gls{API}s disponibilizadas pelo \href{https://servicodados.ibge.gov.br/api/docs/}{\textbf{\gls{API} de serviço de dados}} do \gls{IBGE} utilizando a biblioteca \href{https://pypi.org/project/requests/}{\textbf{requests}}.
 
-Já a extração dos dados de \gls{CNPJ}, devido a oferta desses dados serem escondidos atrás de \gls{CAPTCHA} ou segregados em arquivos \gls{CSV}, torna-se bastante onerosa a consulta e carregamento dos dados, por isso foi utilizada a \gls{API} \href{https://docs.minhareceita.org/}{\textbf{MinhaReceita}}, que realizou a união de todos os arquivos e disponibilizou de maneira acessível e gratuita através de requisições \gls{HTTP}; possibilitou-se então, utilizar a biblioteca \href{https://pypi.org/project/requests/}{\textbf{requests}} para requisitar ao \gls{URI}.
+Já a extração dos dados de \gls{CNPJ}, devido a oferta desses dados serem escondidos atrás de \gls{CAPTCHA} ou segregados em arquivos \gls{CSV}, torna-se bastante onerosa a consulta e carregamento dos dados, por isso foi utilizada a \gls{API} \href{https://docs.minhareceita.org/}{\textbf{MinhaReceita}}, que realizou a união de todos os arquivos e os disponibilizou de maneira acessível e gratuita através de requisições \gls{HTTP}; possibilitou-se então, utilizar a biblioteca \href{https://pypi.org/project/requests/}{\textbf{requests}} para requisitar ao \gls{URI}.
 
 Todo processamento dos dados foi feito em máquina pessoal com Processador Intel I7 (8 núcleos), 16GB de \gls{RAM} e disco \gls{SSD}; não foi necessária a utilização de \textit{frameworks} de processamento de dados.
 
@@ -42,7 +42,7 @@ A limpeza e análise dos dados foi feita utilizando a biblioteca \href{https://p
 \section{Desenvolvimento web}
 % ----------------------------------------------------------
 
-O desenvolvimento do aplicativo web foi feito utilizando \href{https://www.python.org/}{\textbf{Python}} com o \textit{framework} \href{https://www.djangoproject.com/}{Django} para a lógica de servidor (“\textit{back-end}”) e \gls{HTML}, \gls{CSS} junto à biblioteca \href{https://htmx.org/}{\textbf{HTMX}} para a interface gráfica (“\textit{front-end}”).
+O desenvolvimento do aplicativo web foi feito utilizando \href{https://www.python.org/}{\textbf{Python}} com o \textit{framework} \href{https://www.djangoproject.com/}{\textbf{Django}} para a lógica de servidor (“\textit{back-end}”) e \gls{HTML}, \gls{CSS} junto à biblioteca \href{https://htmx.org/}{\textbf{HTMX}} para a interface gráfica (“\textit{front-end}”).
 
 A plataforma foi hospedada em servidor na núvem numa máquina de 4GB de \gls{RAM}, 80 GB de \gls{SSD} e processador Intel com 2 núcleos virtuais. A provedora escolhida foi a \href{https://www.digitalocean.com/}{\textbf{DigitalOcean}}, motivando-se pelo custo fixo e crédito estudantil de 200 dólares via \href{https://education.github.com/pack}{\textbf{GitHub Pro (benefício cedido a estudantes da UFSC)}}, suficiente para manter a máquina ligada por cerca de 6 meses.
 

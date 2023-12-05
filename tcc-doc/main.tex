@@ -30,6 +30,11 @@
 
 \usepackage{setup/ufscthesisA4-alf}
 \usepackage{siunitx}
+\usepackage{array} % for the 'p' column type
+\usepackage{multirow}
+\usepackage{lscape}
+% \usepackage{graphicx}
+
 % ---
 % Filtering and Mapping Bibliographies
 % ---
@@ -208,9 +213,16 @@
 \siglalista{HTML}{Linguagem de Marcação de HiperTexto (Hyper Text Markup Language)}
 \siglalista{CSS}{Folhas de Estilo em Cascata (Cascading Style Sheets)}
 \siglalista{SSL}{Secure Sockets Layer}
+\siglalista{UFSC}{Universidade Federal de Santa Catarina}
+\siglalista{CETESB}{Companhia Ambiental do Estado de São Paulo}
+\siglalista{IA}{Inteligência Artificial}
+\siglalista{LLM}{Large Language Model (Grande Modelo de Linguagem)}
 
 % Declaração dos simbolos
-\simbololista{C}{\ensuremath{C}}{Circunferência de um círculo}
+\simbololista{t}{\ensuremath{t}}{Tonelada}
+\simbololista{kg}{\ensuremath{kg}}{Quilograma}
+\simbololista{g}{\ensuremath{g}}{Grama}
+% \simbololista{\%}{Porcentagem}
 
 
 % compila a lista de abreviaturas e siglas e a lista de símbolos
@@ -319,10 +331,10 @@
 % ---
 % Inicia os apêndices
 % ---
-\begin{apendicesenv}
-%	\partapendices* 
-	\input{aftertext/apendice_a}
-\end{apendicesenv}
+% \begin{apendicesenv}
+% %	\partapendices* 
+% 	\input{aftertext/apendice_a}
+% \end{apendicesenv}
 % ---
 
 
@@ -333,8 +345,9 @@
 % ---
 % Inicia os anexos
 % ---
+% \renewcommand{\appendixautorefname}{Anexo}
 \begin{anexosenv}
-%	\partanexos*
+	% \partanexos*
 	\input{aftertext/anexo_a}
 \end{anexosenv}
 

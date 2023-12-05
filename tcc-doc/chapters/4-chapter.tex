@@ -2,84 +2,341 @@
 \chapter{Desenvolvimento}
 % ----------------------------------------------------------
 
-As conclusões devem responder às questões da pesquisa, em relação aos objetivos e às hipóteses. Devem ser breves, podendo apresentar recomendações e sugestões para trabalhos futuros.
-
 % ----------------------------------------------------------
-\section{Análise exploratória dos dados de MTR}
+\section{Aplicativo web}
 % ----------------------------------------------------------
 
-% ----------------------------------------------------------
-\subsection{Geração}
-% ----------------------------------------------------------
+O sistema do aplicativo tem como essência três partes, comentadas abaixo e ilustradas na \autoref{fig:proj-ideia}.
+
+\begin{itemize} 
+	\item \textbf{Funcionalidade:} a função básica do aplicativo é possibilitar que uma \textbf{Empresa B}, consumidora de resíduos (matéria-prima), localize uma \textbf{Empresa A}, geradora de resíduos, afim de que haja, de alguma forma, uma comuta entre as partes;
+	\item \textbf{Pontuação (\textit{Score}):} para alcançar a funcionalidade é necessário definir métricas que decidam quando uma \textbf{Empresa A} é melhor candidata a fornecer resíduos do que uma \textbf{Empresa C}. Essas métricas são consolidadas em uma pontuação ou score; 
+	\item \textbf{Fontes de Dados:} para obtenção das métricas, necessitam-se de bases de dados com a capacidade de fornecer os dados que se necessitam de forma prática, confiável, com facilidade de manuseio e baixo custo.
+\end{itemize}
+
+\begin{figure}[htb]
+	\caption{\label{fig:proj-ideia} Esquema do projeto do aplicativo web}
+	\begin{center}
+		\includegraphics[scale=0.48]{images/TCC Board.jpg}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
+
+As fontes de dados foram citadas na \autoref{section:Fontes} e neste capítulo na \autoref{section:consolida}. A funcionalidade (Conceito) e as métricas serão mencionadas nas seções a seguir.
+
 
 % ----------------------------------------------------------
-\subsection{Destinação}
+\subsection{Público-alvo}
 % ----------------------------------------------------------
 
-% ----------------------------------------------------------
-\subsection{Anomalias e/ou erros de coleta}
-% ----------------------------------------------------------
+Com esse aplicativo, tem-se objetivo de alcançar tanto potenciais consumidores de matéria-prima quanto geradores de resíduo, uma vez que se entende que não existe apenas geradores ou consumidores numa economia circular. Esta dinâmica está representada na \autoref{fig:user-flux}, onde fixado um Usuário 1, este pode atuar como gerador para X Usuários ou consumidor de X Usuários.
+
+\begin{figure}[htb]
+	\caption{\label{fig:user-flux} Fluxo do usuário no app}
+	\begin{center}
+		\includegraphics[scale=0.38]{images/user-flux.jpg}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
 
 % ----------------------------------------------------------
-\subsection{Filtros aplicados}
+\subsection{Conceito I}
 % ----------------------------------------------------------
 
-% ----------------------------------------------------------
-\section{Potenciais usuários consumidores}
-% ----------------------------------------------------------
+Visando amostrar a funcionalidade básica do sistema, esse foi o conceito prototipado e disponibilizado para teste, servindo de base também para o Conceito II. Nesse sentido, o aplicativo é composto por:
+
+\begin{itemize} 
+	\item \textbf{Página Inicial:} é a página de boas-vindas, deve conter uma breve explicação do funcionamento e contexto do aplicativo e ter uma estética moderna e atrativa;
+	\item \textbf{Janela de Cadastro/Entrada:} entende-se necessário o cadastro, por mais simples que seja, para que se tenha estatísticas de uso do site. Os componentes básicos do cadastro são o e-mail e a senha; 
+	\item \textbf{Janela de Aquisição/Aproveitamento:} com o cadastro, o usuário é direcionado à um painel com um menu que represente Consumo, nesta opção encontra-se um módulo “Localizador de Resíduo”. Nessa função está a janela de aquisição ou aproveitamento de resíduos que contém campos em forma de formulário que irão compor o score para a combinação do usuário com outras empresas, neste caso, o Capítulo, Subcapítulo e Código do \gls{IBAMA}, o Município do usuário/empresa e a Quantidade de resíduo desejada;
+	\item \textbf{Janela de resultado} após envio do formulário, segue-se para a janela de resultados, que apresenta uma classificação (\textit{“ranking”}), em forma de lista, da combinação mais recomendada para a menos recomendada com base na pontuação.
+\end{itemize}
+
+Na \autoref{fig:app-flux1} é possível visualizar os itens mencionados na forma de fluxograma, contudo vale ressaltar que se trata de uma visão genérica e pode diferir do protótipo existente.
+
+\begin{figure}[htb]
+	\caption{\label{fig:app-flux1} Fluxo do aplicativo - Conceito I}
+	\begin{center}
+		\includegraphics[scale=0.33]{images/app-flux1.jpg}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
 
 % ----------------------------------------------------------
-\section{Levantamento de métricas para o match}
+\subsection{Conceito II}
 % ----------------------------------------------------------
 
-% ----------------------------------------------------------
-\subsection{Quantidade}
-% ----------------------------------------------------------
+Numa versão mais completa do aplicativo, adiciona-se ao Conceito I, os menus Geração e Chat, além disso, propõe-se uma abordagem para a janela de aquisição que abrange também usuários sem conhecimento prévio do resíduo, mas que entendem bem as etapas dos processos dentro da indústria. Na \autoref{fig:app-flux2} está ilustrado em formato de fluxograma as adições ao Conceito I.
+
+Sabendo que a comunicação é essencial para qualquer comuta entre os usuários, adiciona-se o recurso de \textbf{Chat}, a qual facilitaria o contato entre empresas geradoras e consumidoras cadastradas. Nesse caminho, entende-se que o aplicativo deixa de se voltar apenas ao consumo, mas também à geração, e em vista disso é adicionado o menu \textbf{Geração}, o qual abarca as janelas de \textbf{Gerenciamento} e \textbf{Destinação}, a primeira possibilitaria a empresa gerenciar os resíduos sólidos, organizando as etapas de geração, armazenamento, transporte e destinação; seria possível também automatizar a geração de \gls{MTR}s através de integrações por \gls{API}, como a disponibilizada pelo \textcite{cetesb_web_2021}; a segunda janela, utiliza-se pelo usuário que deseja destinar ou ofertar o resíduo para outra empresa, seguindo a mesma dinâmica do menu de consumo
+
+\begin{figure}[htb]
+	\caption{\label{fig:app-flux2} Fluxo do Aplicativo - Conceito II}
+	\begin{center}
+		\includegraphics[scale=0.46]{images/app-flux2.jpg}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
+
+A respeito do consumo, para justificar a mudança de abordagem, vale-se citar como exemplo a dissertação de \textcite{lima_jose_2002}, que discute a utilização da lama gerada pela etapa de lavagem do processo de extração de minério de ferro como complemento à argila da massa de placas cerâmicas. 
+
+Nesse cenário, para a Empresa A da indústria de fabricação de revestimento cerâmico, sem conhecimento que esse resíduo pode ter valor, apresenta-se um módulo de “Combinação por fluxo”, em que a empresa seleciona o ramo da indústria (Cerâmica) e o processo deste ramo que deseja navegar (Fabricação de Revestimento Cerâmico), abre-se então um painel com um fluxo simplificado do processo selecionado\footnote{Várias etapas do processo de Fabricação de revestimento cerâmico foram omitidas, como a atomização, secagem e esmaltação, além disso, sabe-se que o fluxo não é linear.}  indicando as entradas e saídas de cada etapa, conforme ilustrado na \autoref{fig:revs-ceramico}. Ao selecionar o componente da etapa que se interessa (Argila) é exibido um painel com possíveis resíduos que podem complementar ou substituir o componente selecionado. 
+
+\begin{figure}[htb]
+	\caption{\label{fig:revs-ceramico} Fluxograma simplificado do processo de fabricação de revestimento cerâmico}
+	\begin{center}
+		\includegraphics[scale=0.46]{images/revs-ceramico.jpg}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
+
+O painel de resíduos é a fase a mais importante e desafiadora do ponto de vista técnico, para prover as opções de resíduos, faz-se necessário uma busca em artigos, disertações, teses por estudos de utilização de resíduos em processos industriais. Na visão deste trabalho, sugere-se o treinamento de um \gls{LLM} com uma base de trabalhos acadêmicos direcionado ao tema, diga-se uma \gls{IA} de Ciência de Materiais ou utilização de \gls{IA}s existentes com foco em ciência, como a \textbf{Galactica} \cite{taylor_galactica_2022}. Outro ponto, é que até o momento da pesquisa realizada, a maioria dos trabalhos relacionados ao aproveitamento de resíduos sólidos no Brasil sequer mencionam uma classificação de resíduos, logo também seria necessário classificar o resíduo em estudo de acordo com a lista de resíduos do \gls{IBAMA}
+
+No contexto, ao prosseguir com a seleção do resíduo seriam preenchidos os dados relativos à quantidade desejada e a localização da empresa, finalizando com os resultados da mesma forma que no Conceito I. Na \autoref{fig:app-mod2} estão representados os módulos da janela de aquisição que compõe o Conceito II.
+
+\begin{figure}[htb]
+	\caption{\label{fig:app-mod2} Fluxograma da janela de aquisição com a adição do módulo de “Combinação por fluxo”}
+	\begin{center}
+		\includegraphics[scale=0.38]{images/app-mod2.jpg}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
+
 
 % ----------------------------------------------------------
-\subsection{Distância}
+\subsection{Métricas para a combinação (\textit{“match”})}
 % ----------------------------------------------------------
 
-% ----------------------------------------------------------
-\subsection{Constância}
-% ----------------------------------------------------------
+As métricas expostas aqui são variáveis que tentam aproximar a real necessidade das indústrias, para que os resultados da combinação estejam de acordo com as expectativas mínimas da empresa. Reconhece-se que existem mais parâmetros a se considerar, às vezes específicos para determinado processo de produção, porém na tentativa de generalizar foram comentadas as variáveis abaixo.
 
-% ----------------------------------------------------------
-\subsection{Composição química}
-% ----------------------------------------------------------
+\begin{itemize} 
+	\item \textbf{Distância:} fator que afeta a energia gasta para mover o resíduo do ponto A para o B, influenciando diretamente o custo da operação. Deve considerar a malha rodoviária ideal para o transporte, não apenas a menor distância;
+	\item \textbf{Quantidade:} para inserir um resíduo numa etapa do processo, deve existir material suficiente para suprir as demandas de ambas as indústrias;
+	\item \textbf{Constância:} a geração deve possuir uma frequência, de modo que seja possível um planejamento pela indústria consumidora de quanto em quanto tempo esse resíduo pode ser obtido;
+  \item \textbf{Composição química:} é evidente que a consumidora preza por manter a qualidade dos produtos, e uma mudança de material base pode impactar negativamente se não forem conhecidas as substâncias que constituem o resíduo;
+  \item \textbf{Estado:} para a consumidora conseguir utilizar o resíduo talvez sejam necessárias etapas de preparação, pois o resíduo pode estar em forma de cacos, pó, pellets, pasta etc. Isso também pode impactar a possibilidade de uso do resíduo.
+\end{itemize}
+
+Das métricas citadas, foram utilizadas para o protótipo apenas a Distância e a Quantidade, pois a Constância e o Estado são dados que não se conseguiu obter junto ao \gls{IMA/SC} devido a dificuldades no sistema interno, o primeiro depende de que os dados estejam em uma granularidade pelo menos mensal, o segundo é algo que consta nos \gls{MTR}s porém não foi incluso nos relatórios. A composição química não consta nos campos do \gls{MTR}, e por se tratarem de resíduos bastante específicos a cada ramo da indústria, pensa-se que seria preciso uma generalização com base na classificação do \gls{IBAMA}, o que é um desafio fora do escopo deste trabalho. 
 
 % ----------------------------------------------------------
 \subsection{Cálculo da pontuação}
 % ----------------------------------------------------------
 
 % ----------------------------------------------------------
-\section{Aplicativo web}
+\section{Protótipo}
 % ----------------------------------------------------------
 
 % ----------------------------------------------------------
-\subsection{Conceito I}
+\subsection{Limitações}
 % ----------------------------------------------------------
 
 % ----------------------------------------------------------
-\subsection{Conceito II}
+\subsection{Possíveis adições e melhorias}
 % ----------------------------------------------------------
 
 % ----------------------------------------------------------
-\subsection{Fluxo do usuário}
+\section{Consolidação dos dados}\label{section:consolida}
 % ----------------------------------------------------------
 
-% ----------------------------------------------------------
-\subsection{Uso de dados}
+\subsection{Limpeza}
+
+Antes de realizar o cruzamento das diferentes fontes de dados — \gls{MTR}, \gls{IBGE} e \gls{CNPJ} —, na base de \gls{MTR}, foi feita a remoção de registros duplicados e nulos provenientes dos arquivos originais e gerados durantes extração dos relatórios \gls{PDF}. 
+
+Também foi feita a remoção de dados com \gls{CPF} e situação cadastral baixada, pois não se tem publicamente a informação de localização para \gls{CPF}, e se a situação cadastral não está ativa, provavelmente a empresa não está em funcionamento. Além disso, durante o cruzamento foi observado que algumas empresas estavam com cadastro vinculado a cidades fora do estado, tais empresas foram removidas. Essas ações previnem que erros sejam multiplicados para as próximas etapas e prejudiquem a análise. A tabela resultante tem a estrutura demonstrada na \autoref{tab:Tab_demo1}.
+
+\setcounter{table}{0}
+
+\begin{table}[htb]
+    \ABNTEXfontereduzida
+    \centering
+    \caption{Amostra da estrutura de dados pós limpeza. \label{tab:Tab_demo1}}
+    % \resizebox{\textwidth}{!}{
+    \begin{tabular}{@{}lllll@{}}
+        \toprule
+        \textbf{Razão Social} & \textbf{CNPJ} & \textbf{Código do Resíduo} & \textbf{Destinação} & \textbf{Quantidade (\gls{t})} \\ \midrule
+        Empresa A & CNPJ A & 190805 & Tratamento de Efluentes & 0,00018 \\
+        Empresa B & CNPJ B & 170202 & Reciclagem              & 0.00020 \\
+        Empresa C & CNPJ C & 200102 & Reciclagem              & 0.00200 \\ \bottomrule
+        \end{tabular}
+    % }
+    \fonte{Elaborado pelo Autor (2023)}
+\end{table}
+
+Nos histogramas da \autoref{fig:hist-quant}, podemos observar no gráfico (a) a distribuição da massa de resíduos gerados ao longo de dois anos (2020 a 2021); destacado em vermelho está a faixa de aproximadamente 10 \gls{g} — 1000 \gls{t}, a qual abrange a maior parte das empresas geradoras.
+No gráfico (b) o intervalo em (a) está aumentado e dividido em 1000 vezes, destaca-se a faixa de 10 \gls{g} — 1 \gls{t}, e considerando que a massa está dividida no total de dois anos, é provável que durante o ano a geração seja muito pequena, inviabilizando a inserção em etapas de um processo produtivo, então decidiu-se por filtrar quantidades de resíduo inferiores a 500 \gls{kg}.
+
+\begin{figure}[htb]
+	\caption{\label{fig:hist-quant} Histograma da geração de resíduos sólidos em \gls{SC} (2020 e 2021)}
+	\begin{center}
+		\includegraphics[scale=0.75]{images/hist-quantidade.png}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
+
+\subsection{Cruzamento}
+
+Esta etapa consiste na ligação entre as bases restantes, através dos dados de \gls{CNPJ} podemos identificar a localização da empresa no Portal de Dados Abertos, e com essa informação obtem-se as coordenadas geográficas do munícipio através dos dados do \gls{IBGE}. Dessa forma, temos todas as variáveis necessárias para listar as empresas que podem atuar como fornecedoras da matéria-prima que outra empresa deseja; a tabela final para realizar a conexão entre as empresas está amostrada na \autoref{tab:Tab_demo2}.
+
+\begin{table}[htb]
+    \ABNTEXfontereduzida
+    \centering
+    \caption{Amostra da estrutura de dados pós cruzamento. \label{tab:Tab_demo2} }
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{@{}llllllllll@{}}
+    \toprule
+    \textbf{Razão Social} &
+        \textbf{CNPJ} &
+        \textbf{CNAE} &
+        \textbf{Município} &
+        \textbf{Longitude} &
+        \textbf{Latitude} &
+        \textbf{Código do Resíduo} &
+        \textbf{Destinação} &
+        \textbf{Quantidade (\gls{t})} \\ \midrule
+    Empresa A & CNPJ A & Fabricação de esquadrias de metal & Joinville     & -26.2443 & -48.9514 & 190805 & Tratamento de Efluentes & 0,00018 \\
+    Empresa B & CNPJ B & Fundição de ferro e aço           & Criciuma      & -28.7157 & -49.3797 & 170202 & Reciclagem              & 0.00020 \\
+    Empresa C & CNPJ C & Laboratórios clínicos             & Florianópolis & -27.5788 & -48.5091 & 200102 & Reciclagem              & 0.00200 \\ \bottomrule
+    \end{tabular}
+    }
+    \fonte{Elaborado pelo Autor (2023)}
+\end{table}
+
+
+\section{Análise exploratória dos dados}
 % ----------------------------------------------------------
 
-% ----------------------------------------------------------
-\subsection{Protótipo}
+No momento em que se escreve esse relatório, não se encontram informações disponíveis publicamente sobre os \gls{MTR}s, logo considera-se válido relizar uma análise para se obter um panorâma geral da Geração e Destinação de \gls{RSI}s em \gls{SC}. 
+
+\subsection{Geração}
 % ----------------------------------------------------------
 
+Dentre os 877 resíduos da classificação do \gls{IBAMA}, de acordo com os relatórios de \gls{MTR}, 135 estão em circulação no estado. Na \autoref{fig:cap-quant}, mostra-se a distribuição da quantidade \gls{t} de geração de resíduos sólidos por capítulo, na \autoref{tab:tab-cap-ibama} do Anexo A — Classificação de Resíduos Sólidos por Capítulos do IBAMA, tem-se a referência para a descrição dos Capítulos.
+
+\begin{figure}[htb]
+	\caption{\label{fig:cap-quant} Geração de resíduos sólidos classificados por capítulo em \gls{SC} (2020 e 2021)}
+	\begin{center}
+		\includegraphics[scale=0.75]{images/cap-quantidade.png}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
+
+Os capítulos com maiores gerações são os 3, 10, 17, 19, 1 e 4, em ordem decrescente de quantidade, correspondendo acerca de 90\% da massa de resíduos gerada em dois anos. Na \autoref{tab:top-res} estão representados os resíduos com maior geração por capítulo.
+
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\begin{landscape}
+    \topskip0pt
+    \vspace*{\fill}
+\begin{table}[htb]
+    \ABNTEXfontereduzida
+    \centering
+    \caption{Resíduos sólidos predominantes por capítulo \label{tab:top-res} }
+    \begin{tabular}{@{}c M{8cm} M{2cm} M{8cm} M{3cm}@{}}
+        \toprule
+        \multicolumn{1}{l}{\textbf{Capítulo}} &
+          \textbf{Descrição Capítulo} &
+          \textbf{Código Resíduo} &
+          \textbf{Descrição Resíduo} &
+          \textbf{Qtd (\gls{t}) $10{^3}$} \\ \midrule
+          3 &
+          Resíduos do processamento de madeira e da fabricação de painéis, mobiliário, papel e celulose &
+          030308 &
+          Resíduos da triagem de papel e papelão destinado a reciclagem &
+          513 \\ \hline
+        1 &
+          Resíduos da prospecção e exploração de minas e pedreiras, bem como de tratamentos físicos e químicos das matérias extraídas &
+          010409 &
+          Areias e argilas &
+          226 \\ \hline
+        17 &
+          Resíduos de construção e demolição (incluindo solos escavados de locais contaminados) &
+          170504 &
+          Solos e rochas não abrangidos em 17 05 03 &
+          196 \\ \hline
+        10 &
+          Resíduos de processos térmicos &
+          100101 &
+          Cinzas, escórias e poeiras de caldeiras (excluída as poeiras   de caldeiras abrangidas em 10 01 04) &
+          152 \\ \hline
+
+        19 &
+          Resíduos de instalações de gestão de resíduos, de estações de tratamento de águas  residuais e da preparação de   água para consumo humano e água para consumo industrial &
+          190805 &
+          Lodos do tratamento de efluentes urbanos &
+          139 \\ \hline
+        4 &
+          Resíduos da indústria do couro e produtos de couro e da indústria têxtil &
+          040215 &
+          Resíduos dos acabamentos não abrangidos em 04 02 14 &
+          86
+        \end{tabular}
+    \fonte{Elaborado pelo Autor (2023)}
+    \end{table}
+    \vspace*{\fill}
+\end{landscape}
+
+Na \autoref{fig:sc-geracao}, pode-se ter uma visão macro da geração de resíduos por município em \gls{SC}. Por questões estéticas nem todos nomes estão exibidos, porém é possível acessar o mapa de forma interativa no site: \url{https://residuose.tech/mapa-geracao-sc}. A \autoref{tab:sc-geracao} lista os municípios com geração acima de 50 mil toneladas. 
+
+É notável o destaque para o município de Joinville, com 5\% da geração de resíduos sólidos do estado, sendo 65\% dos resíduos: 170504 - Solos e rochas não abrangidos em 17 05 03 \footnote{17 05 03 - (*) Solos e rochas contendo outras substâncias perigosas}. (167 mil \gls{t}),  010409 - Areias e argilas (118 mil \gls{t}), 100903 - Escórias do forno (88 mil \gls{t}).
+
+
+\begin{figure}[htb]
+	\caption{\label{fig:sc-geracao} Mapa da geração de resíduos sólidos por município}
+	\begin{center}
+		\includegraphics[scale=0.47]{images/sc-geracao.png}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
+
+
+\begin{table}[htb]
+    \ABNTEXfontereduzida
+    \centering
+    \caption{Geração de resíduos sólidos superior a 50 mil \gls{t} por município  \label{tab:sc-geracao} }
+    \begin{tabular}{@{}ll@{}}
+    \toprule
+    \textbf{Município} & \textbf{Quantidade (\gls{t}) $10{^3}$} \\ \midrule
+    Joinville          & 581,41                                        \\
+    Blumenau           & 165,89                                        \\
+    Criciúma           & 158,95                                        \\
+    Jaraguá do Sul     & 114,99                                        \\
+    Florianópolis      & 111,45                                        \\
+    Vargem Bonita      & 106,61                                        \\
+    Canoinhas          & 99,73                                         \\
+    Indaial            & 91,13                                         \\
+    São José           & 79,10                                         \\
+    Guaramirim         & 77,14                                         \\
+    Lontras            & 66,93                                         \\
+    Otacílio Costa     & 66,57                                         \\
+    Rio Negrinho       & 63,10                                         \\
+    Chapecó            & 61,98                                         \\
+    Gaspar             & 61,19                                         \\
+    Correia Pinto      & 58,74                                         \\
+    Itajaí             & 52,52                                         \\
+    Brusque            & 51,43                                         \\ \bottomrule
+    \end{tabular}
+    \fonte{Elaborado pelo Autor (2023)}
+    \end{table}
+
+---- Adicionar geração x CNAE ?
+
+\pagebreak
 % ----------------------------------------------------------
-\subsubsection{Limitações}
+\subsection{Destinação}
 % ----------------------------------------------------------
 
-% ----------------------------------------------------------
-\subsubsection{Possíveis adições e melhorias}
-% ----------------------------------------------------------
+Com base nos dados de geração, uma vez que o capítulo 03 (Resíduos do processamento de madeira e da fabricação de painéis, mobiliário, papel e celulose) é o predominante no estado, espera-se que a destinação mais praticada seja a de Reciclagem, conforme ilustrado na \autoref{fig:bar-destinacao}, deste valor 45\% é proveniente do cap. 03, 24\% do 17 e 22\% do 10. Para o Aterro, representando 35\% da destinação de resíduos, tem-se 25\% do cap. 10, 17\% do 01 e 19, 16\% do 17 e 13\% do 03.
+
+Considerando que o rastreamento de \gls{MTR}s está sendo efetivo, podemos pontuar que ainda que seja expressiva a destinação tradicional para aterro, \gls{SC} tem explorado as tecnologias alternativas de destinação de resíduos, como podemos ver a utilização de Tratamento Térmico, Uso Agrícola, Coprocessamento e Compostagem. Diante disso, mostra-se um perfil de mercado que, possuindo uma ferramenta que auxilie as indústrias a encontrarem possíveis matérias-primas no meio de tantos resíduos, tem potencial para prover um retorno econômico e ambiental para o estado.
+
+\begin{figure}[htb]
+	\caption{\label{fig:bar-destinacao} Destinação de resíduos sólidos por tecnologia}
+	\begin{center}
+		\includegraphics[scale=0.8]{images/bar-destinacao.png}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
+
+---- Adicionar destinação x CNAE ?
