@@ -120,20 +120,128 @@ As métricas expostas aqui são variáveis que tentam aproximar a real necessida
 Das métricas citadas, foram utilizadas para o protótipo apenas a Distância e a Quantidade, pois a Constância e o Estado são dados que não se conseguiu obter junto ao \gls{IMA/SC} devido a dificuldades no sistema interno, o primeiro depende de que os dados estejam em uma granularidade pelo menos mensal, o segundo é algo que consta nos \gls{MTR}s porém não foi incluso nos relatórios. A composição química não consta nos campos do \gls{MTR}, e por se tratarem de resíduos bastante específicos a cada ramo da indústria, pensa-se que seria preciso uma generalização com base na classificação do \gls{IBAMA}, o que é um desafio fora do escopo deste trabalho. 
 
 % ----------------------------------------------------------
-\subsection{Cálculo da pontuação}
+\subsection{Pontuação e estimativas para o resultado}
 % ----------------------------------------------------------
 
+Para os presentes cálculos, apenas as métricas de distância (\gls{d}) e quantidade são consideradas, tais grandezas estão diretamente relacionadas ao gasto de combustível para o transporte, o qual influencia tanto no custo quanto na pegada de carbono, ambos são estimados no resultado da combinação. No Brasil, em 2019, 64,9\% de toda a carga transportada no Brasil usou o sistema modal rodoviário \cite{cnt_o_nodate}, por essa razão esse foi o modo de transporte avaliado para esse trabalho.
+
+Assumindo que o transporte do resíduo será feito através de um caminhão a diesel de até 16 \gls{t}, segundo \textcite{bartholomeu_quantificacao_2006}, podemos definir as constantes:
+
+\begin{itemize} 
+	\item Fator de emissão de \gls{CO} do diesel: $2,7$ \gls{kg} \gls{CO}$/$\gls{L};
+  \item Consumo médio de combustível: $ 3,4 \cdot 10^{-1} $ \gls{L}$/$\gls{km}.
+\end{itemize}
+
+Assim, temos as variáveis: 
+
+\begin{itemize} 
+	\item Pegada de carbono (\gls{P}): 
+  \begin{equation}\label{eq:Eq_1}
+    \gls{P} = 9,2 \cdot 10^{-1} \cdot \gls{d} \hspace{10mm} (\gls{kg} \hspace{1mm} CO_{2}/\gls{km})
+  \end{equation}
+	\item Custo do transporte\footnote{Como exemplo, foi utilizado o preço médio do diesel S10 em Santa Catarina no mês de Novembro de 2023 ($R\$6,08/$\gls{L}), contudo esse valor deve ser atualizado dinâmicamente no app.} (S): 
+  \begin{equation}\label{eq:custo} 
+    \gls{S} = 2,1 \cdot \gls{d} \hspace{5mm} (R\$/\gls{km})
+  \end{equation}  
+\end{itemize}
+
+Para o cálculo da pontuação será utilizada a equação abaixo, lendo-se que se a quantidade disponível (\gls{Q}) for 80\% inferior à solicitada pelo usuário  for 80\% superior à quantidade solicitada pelo usuário (\gls{q}), considera-se que a quantidade não terá impacto na pontuação.
+
+\begin{equation}\label{eq:pont}
+      \textbf{score} = 
+  \begin{cases}
+      \frac{q}{Q} \cdot \frac{10^2}{x^2 + 10^{-1}},& \text{se } \frac{q}{Q} \leq 0\,8\\
+      \frac{10^2}{x^2 + 10^{-1}},              & \text{senão}
+  \end{cases}
+\end{equation}
+\\
 % ----------------------------------------------------------
 \section{Protótipo}
 % ----------------------------------------------------------
+
+Como mencionado anteriormente, foi utilizado o Conceito I para elaboração do protótipo e para colocá-lo disponível na internet foi dado o nome de \textbf{“residuose”}, um jogo de palavras entre “resíduos” e “simbiose” para remeter ao tema central do sistema, que é fazer com que as empresas trabalhem em sinergia aproveitando os resíduos gerados entre si.
+
+A previsão é que o website esteja online até Abril de 2024 no domínio url{https://residuose.tech}, contudo o cadastro de usuários será limitado, pois ainda não se tem a confirmação junto ao \gls{IMA/SC} para liberação dos dados de \gls{MTR}, como a razão social da empresa e o telefone, por exemplo. 
+
+Na \autoref{fig:app-homepage} e \autoref{fig:app-logsign} estão ilustradas as páginas de entrada para o aplicativo, nota-se que o cadastro requer apenas o e-mail, o nome e uma senha.
+
+\begin{figure}[H]
+	\caption{\label{fig:app-homepage} Página inicial da aplicação}
+	\begin{center}
+		\includegraphics[scale=0.38]{images/homepage.png}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
+
+\begin{figure}[H]
+	\caption{\label{fig:app-logsign} Janelas de cadastro e entrada}
+	\begin{center}
+		\includegraphics[scale=0.38]{images/entrar.png}
+    \includegraphics[scale=0.38]{images/cadasto.png}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
+
+A primeira visão do usuário ao entrar no aplicativo está apresentada na \autoref{fig:app-userpage}, nesta página é possível visualizar todos os módulos disponíveis, para este protótipo apenas o “Localizador de Resíduos”.
+
+\begin{figure}[H]
+	\caption{\label{fig:app-userpage} Página do usuário}
+	\begin{center}
+		\includegraphics[scale=0.38]{images/user-page.png}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
+
+Ao expandir o módulo, podemos observar na \autoref{fig:app-localizador} uma breve descrição e a estruturação dos campos necessários para a combinação, sendo eles: Capítulo, Subcapítulo e Código do \gls{IBAMA}, o Município e a quantidade de resíduo necessária.
+
+\begin{figure}[H]
+	\caption{\label{fig:app-localizador} Módulo de localização de resíduos}
+	\begin{center}
+		\includegraphics[scale=0.38]{images/localizador-residuo.png}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
+
+Ao finalizar o preenchimento e clicar em buscar, o usuário recebe os resultados em forma de lista decrescente de empresas de acordo com o respectivo score. Cada empresa contém informações relevantes ao match registradas em uma caixa. As caixas possuem cores para melhorar a visualização do score, o “Verde” representando um candidato recomendado (score de 5 a 10), “Amarelo” parcialmente recomendado (score de 1 a 4) e “Vermelho” pouco ou não recomendado.
+
+\begin{figure}[H]
+	\caption{\label{fig:app-resultado} Painel de resultados}
+	\begin{center}
+		\includegraphics[scale=0.44]{images/localizador-residuo-resultado.png}
+	\end{center}
+	\fonte{Elaborado pelo Autor (2023)}
+\end{figure}
+
 
 % ----------------------------------------------------------
 \subsection{Limitações}
 % ----------------------------------------------------------
 
+Ainda que esteja funcional, o protótipo possue muitas limitações, algumas citadas abaixo:
+
+\begin{itemize} 
+	\item A localização das empresas foi considerada estar no centróide do município, não devido à falta do endereço completo, mas aos recursos disponíveis no \gls{IBGE}, no ano em que se escreve esse trabalho, apenas a malha de municípios está disponível. Em vista disso, a distância de empresas na mesma cidade do usuário será 0, e o score terá valor máximo se a empresa possuir 80\% da quantidade solicitada;
+  \item A distância entre empresas é calculada a partir da melhor rota, contudo o serviço utilizado é gratuito e por isso possue limites de uso, logo se houverem muitas solicitações, o aplicativo deixará de exibir resultados ou simplesmente irá travar;
+  \item Não há paginação nos resultados, logo se houverem 1000 combinações, todas serão exibidas, o que pode causar lentidão no navegador do usuário;
+  \item O score visual não é dinâmico, de modo que uma busca que apresente apenas valores abaixo de 1, por exemplo, sejam considerados não recomendados, quando na verdade, deveriam estar em formato decrescente de recomendação;
+  \item Os dados de \gls{MTR} compreendem a uma geração de dois anos, logo o dado de quantidade disponível de uma empresa não remete à realidade.
+\end{itemize}
+
 % ----------------------------------------------------------
 \subsection{Possíveis adições e melhorias}
 % ----------------------------------------------------------
+
+Além das propostas do Conceito II, podem-se elencar as seguintes melhorias ao aplicativo em questão:
+
+\begin{itemize} 
+	\item Aumentar a precisão da localização. Existem outras formas de alcançar uma maior precisão, por métodos simples e pagos ou mais complexos e gratuitos.
+  \item Montar um banco de dados com todas as distâncias das melhores rotas entre cidades de SC, de modo a agilizar a busca e não depender do uso de um serviço externo;
+  \item Criar a paginação dos resultados para melhor performance e interface;
+  \item Desenvolver um score visual que mude dinâmicamente com os resultados exibidos;
+  \item Obter dados de \gls{MTR} numa menor granularidade (mensal, pelo menos) e exibir os resultados de acordo;
+  \item Incluir o mapa com o trajeto até a empresa, o qual está sendo salvo, porém não exibido;
+  \item Adicionar a opção de salvar ou exportar os resultados.
+\end{itemize}
 
 % ----------------------------------------------------------
 \section{Consolidação dos dados}\label{section:consolida}
