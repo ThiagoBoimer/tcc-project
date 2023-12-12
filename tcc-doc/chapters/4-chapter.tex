@@ -90,7 +90,7 @@ Nesse cenário, para a Empresa A da indústria de fabricação de revestimento c
 	\fonte{Elaborado pelo Autor (2023)}
 \end{figure}
 
-O painel de resíduos é a fase a mais importante e desafiadora do ponto de vista técnico, para prover as opções de resíduos, faz-se necessário uma busca em artigos, disertações, teses por estudos de utilização de resíduos em processos industriais. Na visão deste trabalho, sugere-se o treinamento de um \gls{LLM} com uma base de trabalhos acadêmicos direcionado ao tema, diga-se uma \gls{IA} de Ciência de Materiais ou utilização de \gls{IA}s existentes com foco em ciência, como a \textbf{Galactica} \cite{taylor_galactica_2022}. Outro ponto, é que até o momento da pesquisa realizada, a maioria dos trabalhos relacionados ao aproveitamento de resíduos sólidos no Brasil sequer mencionam uma classificação de resíduos, logo também seria necessário classificar o resíduo em estudo de acordo com a lista de resíduos do \gls{IBAMA}
+O painel de resíduos é a fase a mais importante e desafiadora do ponto de vista técnico, para prover as opções de resíduos, faz-se necessário uma busca em artigos, dissertações, teses por estudos de utilização de resíduos em processos industriais. Na visão deste trabalho, sugere-se o treinamento de um \gls{LLM} com uma base de trabalhos acadêmicos direcionado ao tema, diga-se uma \gls{IA} de Ciência de Materiais ou utilização de \gls{IA}s existentes com foco em ciência, como a \textbf{Galactica} \cite{taylor_galactica_2022}. Outro ponto, é que até o momento da pesquisa realizada, a maioria dos trabalhos relacionados ao aproveitamento de resíduos sólidos no Brasil sequer mencionam uma classificação de resíduos, logo também seria necessário classificar o resíduo em estudo de acordo com a lista de resíduos do \gls{IBAMA}
 
 No contexto, ao prosseguir com a seleção do resíduo seriam preenchidos os dados relativos à quantidade desejada e a localização da empresa, finalizando com os resultados da mesma forma que no Conceito I. Na \autoref{fig:app-mod2} estão representados os módulos da janela de aquisição que compõe o Conceito II.
 
@@ -125,11 +125,11 @@ Das métricas citadas, foram utilizadas para o protótipo apenas a Distância e 
 
 Para os presentes cálculos, apenas as métricas de distância (\gls{d}) e quantidade são consideradas, tais grandezas estão diretamente relacionadas ao gasto de combustível para o transporte, o qual influencia tanto no custo quanto na pegada de carbono, ambos são estimados no resultado da combinação. No Brasil, em 2019, 64,9\% de toda a carga transportada no Brasil usou o sistema modal rodoviário \cite{cnt_o_nodate}, por essa razão esse foi o modo de transporte avaliado para esse trabalho.
 
-Assumindo que o transporte do resíduo será feito através de um caminhão a diesel de até 16 \gls{t}, segundo \textcite{bartholomeu_quantificacao_2006}, podemos definir as constantes:
+Assumindo que o transporte do resíduo será feito através de um caminhão a diesel de até 16 \ensuremath{t}, segundo \textcite{bartholomeu_quantificacao_2006}, podemos definir as constantes:
 
 \begin{itemize} 
-	\item Fator de emissão de \gls{CO} do diesel: $2,7$ \gls{kg} \gls{CO}$/$\gls{L};
-  \item Consumo médio de combustível: $ 3,4 \cdot 10^{-1} $ \gls{L}$/$\gls{km}.
+	\item Fator de emissão de $CO_{2}$ do diesel: $2,7 kg CO_{2}/L $;
+  \item Consumo médio de combustível: $ 3,4 \cdot 10^{-1} L/km $.
 \end{itemize}
 
 Assim, temos as variáveis: 
@@ -137,11 +137,11 @@ Assim, temos as variáveis:
 \begin{itemize} 
 	\item Pegada de carbono (\gls{P}): 
   \begin{equation}\label{eq:Eq_1}
-    \gls{P} = 9,2 \cdot 10^{-1} \cdot \gls{d} \hspace{10mm} (\gls{kg} \hspace{1mm} CO_{2}/\gls{km})
+    \gls{P} = 9,2 \cdot 10^{-1} \cdot \gls{d} \hspace{10mm} (\ensuremath{kg} \hspace{1mm} CO_{2}/\ensuremath{km})
   \end{equation}
-	\item Custo do transporte\footnote{Como exemplo, foi utilizado o preço médio do diesel S10 em Santa Catarina no mês de Novembro de 2023 ($R\$6,08/$\gls{L}), contudo esse valor deve ser atualizado dinâmicamente no app.} (S): 
+	\item Custo do transporte\footnote{Como exemplo, foi utilizado o preço médio do diesel S10 em Santa Catarina no mês de Novembro de 2023 ($R\$6,08/$\ensuremath{L}), contudo esse valor deve ser atualizado dinâmicamente no app.} (S): 
   \begin{equation}\label{eq:custo} 
-    \gls{S} = 2,1 \cdot \gls{d} \hspace{5mm} (R\$/\gls{km})
+    \gls{S} = 2,1 \cdot \gls{d} \hspace{5mm} (R\$/\ensuremath{km})
   \end{equation}  
 \end{itemize}
 
@@ -217,11 +217,11 @@ Ao finalizar o preenchimento e clicar em buscar, o usuário recebe os resultados
 \subsection{Limitações}
 % ----------------------------------------------------------
 
-Ainda que esteja funcional, o protótipo possue muitas limitações, algumas citadas abaixo:
+Ainda que esteja funcional, o protótipo possui muitas limitações, algumas citadas abaixo:
 
 \begin{itemize} 
-	\item A localização das empresas foi considerada estar no centróide do município, não devido à falta do endereço completo, mas aos recursos disponíveis no \gls{IBGE}, no ano em que se escreve esse trabalho, apenas a malha de municípios está disponível. Em vista disso, a distância de empresas na mesma cidade do usuário será 0, e o score terá valor máximo se a empresa possuir 80\% da quantidade solicitada;
-  \item A distância entre empresas é calculada a partir da melhor rota, contudo o serviço utilizado é gratuito e por isso possue limites de uso, logo se houverem muitas solicitações, o aplicativo deixará de exibir resultados ou simplesmente irá travar;
+	\item A localização das empresas foi considerada estar no centroide do município, não devido à falta do endereço completo, mas aos recursos disponíveis no \gls{IBGE}, no ano em que se escreve esse trabalho, apenas a malha de municípios está disponível. Em vista disso, a distância de empresas na mesma cidade do usuário será 0, e o score terá valor máximo se a empresa possuir 80\% da quantidade solicitada;
+  \item A distância entre empresas é calculada a partir da melhor rota, contudo o serviço utilizado é gratuito e por isso possui limites de uso, logo se houverem muitas solicitações, o aplicativo deixará de exibir resultados ou simplesmente irá travar;
   \item Não há paginação nos resultados, logo se houverem 1000 combinações, todas serão exibidas, o que pode causar lentidão no navegador do usuário;
   \item O score visual não é dinâmico, de modo que uma busca que apresente apenas valores abaixo de 1, por exemplo, sejam considerados não recomendados, quando na verdade, deveriam estar em formato decrescente de recomendação;
   \item Os dados de \gls{MTR} compreendem a uma geração de dois anos, logo o dado de quantidade disponível de uma empresa não remete à realidade.
@@ -237,7 +237,7 @@ Além das propostas do Conceito II, podem-se elencar as seguintes melhorias ao a
 	\item Aumentar a precisão da localização. Existem outras formas de alcançar uma maior precisão, por métodos simples e pagos ou mais complexos e gratuitos.
   \item Montar um banco de dados com todas as distâncias das melhores rotas entre cidades de SC, de modo a agilizar a busca e não depender do uso de um serviço externo;
   \item Criar a paginação dos resultados para melhor performance e interface;
-  \item Desenvolver um score visual que mude dinâmicamente com os resultados exibidos;
+  \item Desenvolver um score visual que mude dinamicamente com os resultados exibidos;
   \item Obter dados de \gls{MTR} numa menor granularidade (mensal, pelo menos) e exibir os resultados de acordo;
   \item Incluir o mapa com o trajeto até a empresa, o qual está sendo salvo, porém não exibido;
   \item Adicionar a opção de salvar ou exportar os resultados.
@@ -262,7 +262,7 @@ Também foi feita a remoção de dados com \gls{CPF} e situação cadastral baix
     % \resizebox{\textwidth}{!}{
     \begin{tabular}{@{}lllll@{}}
         \toprule
-        \textbf{Razão Social} & \textbf{CNPJ} & \textbf{Código do Resíduo} & \textbf{Destinação} & \textbf{Quantidade (\gls{t})} \\ \midrule
+        \textbf{Razão Social} & \textbf{CNPJ} & \textbf{Código do Resíduo} & \textbf{Destinação} & \textbf{Quantidade (\ensuremath{t})} \\ \midrule
         Empresa A & CNPJ A & 190805 & Tratamento de Efluentes & 0,00018 \\
         Empresa B & CNPJ B & 170202 & Reciclagem              & 0.00020 \\
         Empresa C & CNPJ C & 200102 & Reciclagem              & 0.00200 \\ \bottomrule
@@ -271,11 +271,11 @@ Também foi feita a remoção de dados com \gls{CPF} e situação cadastral baix
     \fonte{Elaborado pelo Autor (2023)}
 \end{table}
 
-Nos histogramas da \autoref{fig:hist-quant}, podemos observar no gráfico (a) a distribuição da massa de resíduos gerados ao longo de dois anos (2020 a 2021); destacado em vermelho está a faixa de aproximadamente 10 \gls{g} — 1000 \gls{t}, a qual abrange a maior parte das empresas geradoras.
-No gráfico (b) o intervalo em (a) está aumentado e dividido em 1000 vezes, destaca-se a faixa de 10 \gls{g} — 1 \gls{t}, e considerando que a massa está dividida no total de dois anos, é provável que durante o ano a geração seja muito pequena, inviabilizando a inserção em etapas de um processo produtivo, então decidiu-se por filtrar quantidades de resíduo inferiores a 500 \gls{kg}.
+Nos histogramas da \autoref{fig:hist-quant}, podemos observar no gráfico (a) a distribuição da massa de resíduos gerados ao longo de dois anos (2020 a 2021); destacado em vermelho está a faixa de aproximadamente 10 \ensuremath{g} — 1000 \ensuremath{t}, a qual abrange a maior parte das empresas geradoras.
+No gráfico (b) o intervalo em (a) está aumentado e dividido em 1000 vezes, destaca-se a faixa de 10 \ensuremath{g} — 1 \ensuremath{t}, e considerando que a massa está dividida no total de dois anos, é provável que durante o ano a geração seja muito pequena, inviabilizando a inserção em etapas de um processo produtivo, então decidiu-se por filtrar quantidades de resíduo inferiores a 500 \ensuremath{kg}.
 
 \begin{figure}[htb]
-	\caption{\label{fig:hist-quant} Histograma da geração de resíduos sólidos em \gls{SC} (2020 e 2021)}
+	\caption{\label{fig:hist-quant} Histograma da geração de resíduos sólidos em SC (2020 e 2021)}
 	\begin{center}
 		\includegraphics[scale=0.75]{images/hist-quantidade.png}
 	\end{center}
@@ -284,7 +284,7 @@ No gráfico (b) o intervalo em (a) está aumentado e dividido em 1000 vezes, des
 
 \subsection{Cruzamento}
 
-Esta etapa consiste na ligação entre as bases restantes, através dos dados de \gls{CNPJ} podemos identificar a localização da empresa no Portal de Dados Abertos, e com essa informação obtem-se as coordenadas geográficas do munícipio através dos dados do \gls{IBGE}. Dessa forma, temos todas as variáveis necessárias para listar as empresas que podem atuar como fornecedoras da matéria-prima que outra empresa deseja; a tabela final para realizar a conexão entre as empresas está amostrada na \autoref{tab:Tab_demo2}.
+Esta etapa consiste na ligação entre as bases restantes, através dos dados de \gls{CNPJ} podemos identificar a localização da empresa no Portal de Dados Abertos, e com essa informação obtém-se as coordenadas geográficas do município através dos dados do \gls{IBGE}. Dessa forma, temos todas as variáveis necessárias para listar as empresas que podem atuar como fornecedoras da matéria-prima que outra empresa deseja; a tabela final para realizar a conexão entre as empresas está amostrada na \autoref{tab:Tab_demo2}.
 
 \begin{table}[htb]
     \ABNTEXfontereduzida
@@ -301,9 +301,9 @@ Esta etapa consiste na ligação entre as bases restantes, através dos dados de
         \textbf{Latitude} &
         \textbf{Código do Resíduo} &
         \textbf{Destinação} &
-        \textbf{Quantidade (\gls{t})} \\ \midrule
+        \textbf{Quantidade (\ensuremath{t})} \\ \midrule
     Empresa A & CNPJ A & Fabricação de esquadrias de metal & Joinville     & -26.2443 & -48.9514 & 190805 & Tratamento de Efluentes & 0,00018 \\
-    Empresa B & CNPJ B & Fundição de ferro e aço           & Criciuma      & -28.7157 & -49.3797 & 170202 & Reciclagem              & 0.00020 \\
+    Empresa B & CNPJ B & Fundição de ferro e aço           & Criciúma      & -28.7157 & -49.3797 & 170202 & Reciclagem              & 0.00020 \\
     Empresa C & CNPJ C & Laboratórios clínicos             & Florianópolis & -27.5788 & -48.5091 & 200102 & Reciclagem              & 0.00200 \\ \bottomrule
     \end{tabular}
     }
@@ -314,15 +314,15 @@ Esta etapa consiste na ligação entre as bases restantes, através dos dados de
 \section{Análise exploratória dos dados}
 % ----------------------------------------------------------
 
-No momento em que se escreve esse relatório, não se encontram informações disponíveis publicamente sobre os \gls{MTR}s, logo considera-se válido relizar uma análise para se obter um panorâma geral da Geração e Destinação de \gls{RSI}s em \gls{SC}. 
+No momento em que se escreve esse relatório, não se encontram informações disponíveis publicamente sobre os \gls{MTR}s, logo considera-se válido realizar uma análise para se obter um panorama geral da Geração e Destinação de \gls{RSI}s em \gls{SC}. 
 
 \subsection{Geração}
 % ----------------------------------------------------------
 
-Dentre os 877 resíduos da classificação do \gls{IBAMA}, de acordo com os relatórios de \gls{MTR}, 135 estão em circulação no estado. Na \autoref{fig:cap-quant}, mostra-se a distribuição da quantidade \gls{t} de geração de resíduos sólidos por capítulo, na \autoref{tab:tab-cap-ibama} do Anexo A — Classificação de Resíduos Sólidos por Capítulos do IBAMA, tem-se a referência para a descrição dos Capítulos.
+Dentre os 877 resíduos da classificação do \gls{IBAMA}, de acordo com os relatórios de \gls{MTR}, 135 estão em circulação no estado. Na \autoref{fig:cap-quant}, mostra-se a distribuição da quantidade \ensuremath{t} de geração de resíduos sólidos por capítulo, na \autoref{tab:tab-cap-ibama} do Anexo A — Classificação de Resíduos Sólidos por Capítulos do IBAMA, tem-se a referência para a descrição dos Capítulos.
 
 \begin{figure}[htb]
-	\caption{\label{fig:cap-quant} Geração de resíduos sólidos classificados por capítulo em \gls{SC} (2020 e 2021)}
+	\caption{\label{fig:cap-quant} Geração de resíduos sólidos classificados por capítulo em SC (2020 e 2021)}
 	\begin{center}
 		\includegraphics[scale=0.75]{images/cap-quantidade.png}
 	\end{center}
@@ -347,7 +347,7 @@ Os capítulos com maiores gerações são os 3, 10, 17, 19, 1 e 4, em ordem decr
           \textbf{Descrição Capítulo} &
           \textbf{Código Resíduo} &
           \textbf{Descrição Resíduo} &
-          \textbf{Qtd (\gls{t}) $10{^3}$} \\ \midrule
+          \textbf{Qtd (\ensuremath{t}) $10{^3}$} \\ \midrule
           3 &
           Resíduos do processamento de madeira e da fabricação de painéis, mobiliário, papel e celulose &
           030308 &
@@ -387,7 +387,7 @@ Os capítulos com maiores gerações são os 3, 10, 17, 19, 1 e 4, em ordem decr
 
 Na \autoref{fig:sc-geracao}, pode-se ter uma visão macro da geração de resíduos por município em \gls{SC}. Por questões estéticas nem todos nomes estão exibidos, porém é possível acessar o mapa de forma interativa no site: \url{https://residuose.tech/mapa-geracao-sc}. A \autoref{tab:sc-geracao} lista os municípios com geração acima de 50 mil toneladas. 
 
-É notável o destaque para o município de Joinville, com 5\% da geração de resíduos sólidos do estado, sendo 65\% dos resíduos: 170504 - Solos e rochas não abrangidos em 17 05 03 \footnote{17 05 03 - (*) Solos e rochas contendo outras substâncias perigosas}. (167 mil \gls{t}),  010409 - Areias e argilas (118 mil \gls{t}), 100903 - Escórias do forno (88 mil \gls{t}).
+É notável o destaque para o município de Joinville, com 5\% da geração de resíduos sólidos do estado, sendo 65\% dos resíduos: 170504 - Solos e rochas não abrangidos em 17 05 03 \footnote{17 05 03 - (*) Solos e rochas contendo outras substâncias perigosas}. (167 mil \ensuremath{t}),  010409 - Areias e argilas (118 mil \ensuremath{t}), 100903 - Escórias do forno (88 mil \ensuremath{t}).
 
 
 \begin{figure}[htb]
@@ -402,10 +402,10 @@ Na \autoref{fig:sc-geracao}, pode-se ter uma visão macro da geração de resíd
 \begin{table}[htb]
     \ABNTEXfontereduzida
     \centering
-    \caption{Geração de resíduos sólidos superior a 50 mil \gls{t} por município  \label{tab:sc-geracao} }
+    \caption{Geração de resíduos sólidos superior a 50 mil \ensuremath{t} por município  \label{tab:sc-geracao} }
     \begin{tabular}{@{}ll@{}}
     \toprule
-    \textbf{Município} & \textbf{Quantidade (\gls{t}) $10{^3}$} \\ \midrule
+    \textbf{Município} & \textbf{Quantidade (\ensuremath{t}) $10{^3}$} \\ \midrule
     Joinville          & 581,41                                        \\
     Blumenau           & 165,89                                        \\
     Criciúma           & 158,95                                        \\
@@ -428,8 +428,6 @@ Na \autoref{fig:sc-geracao}, pode-se ter uma visão macro da geração de resíd
     \fonte{Elaborado pelo Autor (2023)}
     \end{table}
 
----- Adicionar geração x CNAE ?
-
 \pagebreak
 % ----------------------------------------------------------
 \subsection{Destinação}
@@ -446,5 +444,3 @@ Considerando que o rastreamento de \gls{MTR}s está sendo efetivo, podemos pontu
 	\end{center}
 	\fonte{Elaborado pelo Autor (2023)}
 \end{figure}
-
----- Adicionar destinação x CNAE ?

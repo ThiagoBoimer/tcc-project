@@ -6,7 +6,7 @@
 \section{Fontes de dados}\label{section:Fontes}
 % ----------------------------------------------------------
 
-Para este trabalho foram utilizados marjoritariamente dados acessíveis publicamente, com exceção aos dados de \gls{MTR}, que foi necessário solicitar ao \gls{IMA/SC}
+Para este trabalho foram utilizados majoritariamente dados acessíveis publicamente, com exceção aos dados de \gls{MTR}, que foi necessário solicitar ao \gls{IMA/SC}
 
 \subsection{MTR}
 
@@ -16,7 +16,7 @@ Os dados de geração de resíduos sólidos em \gls{SC} de 2020 a 2021 foram ext
 
 \subsection{IBGE}
 
-Com o objetivo de obter os dados relativos a nome de município e coordenadas geográficas foram utilizados os dados abertos mais recentes (2023) de munícipios e de malhas geográficas do \gls{IBGE}. Ambos disponíveis na \href{https://servicodados.ibge.gov.br/api/docs/}{\textbf{\gls{API} de serviço de dados}} do instituto.
+Com o objetivo de obter os dados relativos a nome de município e coordenadas geográficas foram utilizados os dados abertos mais recentes (2023) de municípios e de malhas geográficas do \gls{IBGE}. Ambos disponíveis na \href{https://servicodados.ibge.gov.br/api/docs/}{\textbf{\gls{API} de serviço de dados}} do instituto.
 
 \subsection{Portal de Dados Abertos}
 
@@ -34,7 +34,7 @@ Já a extração dos dados de \gls{CNPJ}, devido a oferta desses dados serem esc
 
 Todo processamento dos dados foi feito em máquina pessoal com Processador Intel I7 (8 núcleos), 16GB de \gls{RAM} e disco \gls{SSD}; não foi necessária a utilização de \textit{frameworks} de processamento de dados.
 
-O armazenamento foi feito em máquina virtual disponível em núvem (\textit{Cloud Computing}) utilizando o banco de dados estruturado \href{https://www.postgresql.org/}{\textbf{PostgreSQL}}.
+O armazenamento foi feito em máquina virtual disponível em nuvem (\textit{Cloud Computing}) utilizando o banco de dados estruturado \href{https://www.postgresql.org/}{\textbf{PostgreSQL}}.
 
 A limpeza e análise dos dados foi feita utilizando a biblioteca \href{https://pandas.pydata.org/}{\textbf{Pandas}} e \gls{SQL}.
 
@@ -46,6 +46,6 @@ Os cálculos relativo a rotas e distâncias entre cidades foram feitos utilizand
 
 O desenvolvimento do aplicativo web foi feito utilizando \href{https://www.python.org/}{\textbf{Python}} com o \textit{framework} \href{https://www.djangoproject.com/}{\textbf{Django}} para a lógica de servidor (“\textit{back-end}”) e \gls{HTML}, \gls{CSS} junto à biblioteca \href{https://htmx.org/}{\textbf{HTMX}} para a interface gráfica (“\textit{front-end}”).
 
-A plataforma foi hospedada em servidor na núvem numa máquina de 4GB de \gls{RAM}, 80 GB de \gls{SSD} e processador Intel com 2 núcleos virtuais. A provedora escolhida foi a \href{https://www.digitalocean.com/}{\textbf{DigitalOcean}}, motivando-se pelo custo fixo e crédito estudantil de 200 dólares via \href{https://education.github.com/pack}{\textbf{GitHub Pro (benefício cedido a estudantes da UFSC)}}, suficiente para manter a máquina ligada por cerca de 6 meses.
+A plataforma foi hospedada em servidor na nuvem numa máquina de 4GB de \gls{RAM}, 80 GB de \gls{SSD} e processador Intel com 2 núcleos virtuais. A provedora escolhida foi a \href{https://www.digitalocean.com/}{\textbf{DigitalOcean}}, motivando-se pelo custo fixo e crédito estudantil de 200 dólares via \href{https://education.github.com/pack}{\textbf{GitHub Pro (benefício cedido a estudantes da UFSC)}}, suficiente para manter a máquina ligada por cerca de 6 meses.
 
-Também foram utilizadas as melhores práticas de versionamento de código com \href{https://git-scm.com/}{\textbf{Git}}, containerização com \href{https://www.docker.com/}{\textbf{Docker}}, balanceamento de carga e proxy com \href{https://www.nginx.com/}{\textbf{NGINX}} e certificação \gls{SSL}. Todas tecnologias gratuitas.
+Também foram utilizadas as melhores práticas de versionamento de código com \href{https://git-scm.com/}{\textbf{Git}}, conteinerização com \href{https://www.docker.com/}{\textbf{Docker}}, balanceamento de carga e proxy com \href{https://www.nginx.com/}{\textbf{NGINX}} e certificação \gls{SSL}. Todas tecnologias gratuitas.
